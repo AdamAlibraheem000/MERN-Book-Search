@@ -19,10 +19,17 @@ const typeDefs = gql`
         # authors may need to be an array
     }
     
+    type Auth{
+        token: ID!
+        user: User
+    }
     
     type Query{
+        me: User
         users: [User]
-        
+        user(username: String!):User
+        books(username: String):[Book]
+        # books(_id: ID!): Book
     }
 
     type Mutation{
@@ -30,10 +37,7 @@ const typeDefs = gql`
         addUser(username: String!, email: String!, password: String!): Auth
     }
 
-    type Auth{
-        token: ID!
-        user: User
-    }
+    
 `;
 
 module.exports = typeDefs;
